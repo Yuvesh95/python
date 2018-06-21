@@ -4,9 +4,7 @@ import random
 
 def create_cluster(X, centroid_pts):
     cluster = {}
-  # read about lambdas and np.linalg.form
-  # https://stackoverflow.com/questions/32141856/is-norm-equivalent-to-euclidean-distance ,
-  # here we are using order 1 to calculate normalized distance
+ #this is the method used for creating new cluster
     for x in X:
         value = min([(i[0],np.linalg.norm(x - centroid_pts[i[0]]))for i in enumerate(centroid_pts)], key=lambda s:s[1])[0]
         try:
@@ -23,7 +21,7 @@ def calculate_new_center(cluster):
 
 def matched(new_centroids, old_centroids):
     return (set([tuple(a)for a in new_centroids]) == set([tuple(a)for a in old_centroids]))
-
+# this part the centroids vary to the actual centroids position in this iteration is used for same reason 
 def Apply_Kmeans(X, K, N):
     # selecting random centroids from dataset and by number of clusters.
     old_centroids = np.random.randint(N, size = K)
@@ -52,7 +50,7 @@ def Apply_Kmeans(X, K, N):
     print("Results after final iteration:")
     plot_cluster(new_centroid_pts, cluster_info, itr)
     return
-
+# to plot the outputs 
 def plot_cluster(mu,cluster, itr):
     color = 10 * ['r.','g.','k.','c.','b.','m.']
     print('Iteration number : ',itr)
@@ -72,10 +70,14 @@ def Simulate_Clusters():
     K = int(input('Enter the number of Clusters.......'))
 
     p1 = np.array([32,33,36,40,39,31,35.5,30.3,34.3,32.7,39.8,37.2,31.4,38.8,32.6,34.7,35.1,37.5,36.2,39.8])
+    # sizes of Tshirt
     p2 = np.array([5,5.1,5.1,5.3,5.4,5.5,5.6,5.7,5.8,5.9,6])
+    # heights 
     X = init_graph(len(p1), p2, p1)
     plt.scatter(X[:, 0], X[:, 1])
+    #intinially to scater the values in random
     plt.show()
+    #to show the output on graph
     Apply_Kmeans(X, K, len(X))
 
 

@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+#initailizing the values 
 xValues = np.array([0,1,2,3,4,5,6,7,8,9])
 yValues = np.array([1,3,2,5,7,8,8,9,10,12])
 
